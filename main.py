@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 
-from bootstrap import get_container
 from routes import loger_router
 
 app = FastAPI(
@@ -12,9 +11,6 @@ app = FastAPI(
         "name": "Danushka Dissanayaka",
         "email": "dsjayamal@gmail.com",
     },)
-
-# register ioc
-app.state.ioc_container = get_container()
 
 # register routes
 app.include_router(loger_router)

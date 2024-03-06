@@ -2,7 +2,6 @@ from typing import List
 
 from fastapi import Depends
 
-from bootstrap import IOCService
 from database.repository.impl.log_repository import LogRepository
 from database.repository.meta.log_repository_meta import LogRepositoryMeta
 from model.common.query_param_model import QueryParamModel
@@ -15,7 +14,7 @@ from service.meta.log_service_meta import LogServiceMeta
 class LogService(LogServiceMeta):
     _log_repository: LogRepositoryMeta
 
-    def __init__(self, log_repository: LogRepositoryMeta = IOCService(LogRepository)):
+    def __init__(self, log_repository: LogRepositoryMeta = Depends(LogRepository)):
         self._log_repository = log_repository
 
     def add(self, model: LogModel) -> LogViewModel:
